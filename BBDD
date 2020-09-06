@@ -24,8 +24,6 @@ Create table ClienteProducto (
 Create table Producto (
 	Producto_ID int,
 	Nombre varchar(30),
-	Cliente_ID int references Cliente(Cliente_ID),
-	Proyecto_nombre varchar(30) references Proyecto(Nombre),
 	Primary key(Producto_ID)
 	);
 
@@ -131,23 +129,40 @@ Codigo SQL para ingresar datos a las tablas:
 
 
 Insert Into cliente(cliente_id,nombre,teléfono) values(i,'c','c');
-Insert Into compra(emplead_id,maquinaria_id,costo) values(int,int,'c');
-Insert Into empleado(carga,teléfono,salario,dirección,nombre,empleado_id,proyecto_nombre) values('c','c','c','c','c',i,'c');
-Insert Into factura(número,pago,fecha,cliente_id), values('c','c','c',i);
-Insert Into maquinaria(modelo,maquinaria_id,nombre,marca,cantidad) values('c',i,'c','c','c');
-Insert Into operación(nombre,fecha,altitud,ubicación) values('c''c''c''c');
-Insert Into producto(producto_id,nombre,cliente_id,proyecto_nombre) values(i,'c',i,'c');
-Insert Into proveedor(ruct,teléfono,email,nombre) values('c','c','c','c');
-Insert Into proyecto(altitud,ubicación,nombre,cliente_id), values('c','c','c',i);
-Insert Into suministrado(maquinaria_id, proveedor_ruc) values(i,'c');
 
-Insert Into proyectoopearcion(proyecto_nombre,operación_nombre) values('c','c');
-Insert Into ClienteOperacion() values();
-Insert Into EmpleadoOperacion() values();
-Insert Into EmpleadoProyecto() values();
-Insert Into CargoSalario() values();
-Insert Into Conflicto Social(ubicacion, ) values();
-Insert Into Supervisor() values();
+Insert Into clienteoperacion(cliente_id,producto_id) values(i,i);
+
+Insert Into producto(producto_id,nombre) values(i,'c');
+
+Insert Into productooperacion(producto_id,operacion_id) values();
+
+Insert Into operación(operacion_id,nombre,fecha,altitud,ubicación) values('c''c''c''c');
+
+Insert Into operacionconflicto(operacion_id,conflicto_id) values();
+
+Insert Into conflictosocial(conflicto_id,ubicacion,situacion) values();
+
+Insert Into operacionmaquinaria(operacion_id,maquinaria_id) values();
+
+Insert Into maquinaria(maquinaria_id,modelo,nombre,marca,cantidad) values(i,'c','c','c','c');
+
+Insert Into opionproyecto(operacion_id,proyecto_id) values();
+
+Insert Into proyecto(altitud,ubicación,nombre,cliente_id), values('c','c','c',i);
+
+Insert Into operacionempleado() values();
+
+Insert Into empleado(empleado_id,nombre,dirección,carga,teléfono,salario,) values('c','c','c','c','c',i,'c');
+
+Insert Into supervisa(supervisor_id,empleado_id) values();
+
+Insert Into empleadoproyecto(empleado_id,proyecto_id) values();
+
+Insert Into empleadomaquinaria(empleado_id,maquinaria_id) values();
+
+Insert Into maquinariaproveedor(maquinaria_id,ruc) values();
+
+Insert Into proveedor(ruc,nombre,telefono,email) values();
 
 
 Codigo para hacer consultas:
