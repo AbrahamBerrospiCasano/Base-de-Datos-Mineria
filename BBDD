@@ -90,7 +90,7 @@ Create table Empleado (
 	Empleado_ID int,
 	Nombre varchar(30),
 	Dirección varchar(30),
-	Carga varchar(30),
+	Cargo varchar(30),
 	Teléfono varchar(30),
 	Salario varchar(30),
 	primary key(Empleado_ID)
@@ -124,10 +124,8 @@ Create table Proveedor (
 	primary key(RUC) 
 	);
 
-	
-	
-Codigo SQL para ingresar datos a las tablas:
 
+Codigo SQL para ingresar datos a las tablas:
 
 Insert Into cliente(cliente_id,nombre,teléfono) values(i,'c','c');
 
@@ -153,7 +151,7 @@ Insert Into proyecto(altitud,ubicación,nombre,cliente_id), values('c','c','c',i
 
 Insert Into operacionempleado(operacion_id,empleado_id) values(i,i);
 
-Insert Into empleado(empleado_id,nombre,dirección,carga,teléfono,salario,) values(i,'c','c','c','c','c');
+Insert Into empleado(empleado_id,nombre,dirección,cargo,teléfono,salario,) values(i,'c','c','c','c','c');
 
 Insert Into supervisa(supervisor_id,empleado_id) values(i,i);
 
