@@ -9,24 +9,26 @@ create database mina;
 
 Codigo para crear las tablas:
 
-create table Cliente (
+Create table Cliente (
 	Cliente_ID int,
 	Nombre varchar(30),
 	Teléfono varchar(30),
 	primary key(Cliente_ID)
 	);
 
-create table Proyecto (
-	Altitud varchar(30),
-	Ubicacion varchar(30),
+Create table Solicita (
+	
+	);
+
+Create table Producto (
+	Producto_ID int,
 	Nombre varchar(30),
 	Cliente_ID int references Cliente(Cliente_ID),
-	primary key(Nombre)
+	Proyecto_nombre varchar(30) references Proyecto(Nombre),
+	Primary key(Producto_ID)
 	);
-	//ID proyecto
-     
 
-create table Operación (
+Create table Operación (
 	Operacion_ID varchar(30),  /agregado
 	Nombre varchar(30),
 	Fecha varchar(30),
@@ -34,21 +36,55 @@ create table Operación (
 	Ubicación varchar(30),
 	primary key(Nombre)
 	);
-	//
-       
-create table ClienteOperacion(
-	Cliente_ID references Cliente(Cliente_ID),
-	Operacion_ID references Operacion(Operacion_ID),
+
+Create table Asociado (
+
 	);
 	
-create table EmpleadoOperacion(
+Create table ConflictoSocial (
+	Conficto_ID int,
+	Ubicacion references Operacion(Ubicacion);    //duda
+	Situacion varchar(30);
+	);
+	
+Create table Trabaja (
+	
+	
+	
+	);
+
+Create table Empleado (
+    Carga varchar(30),
+    Teléfono varchar(30),
+    Salario varchar(30),
+    Dirección varchar(30),
+    Nombre varchar(30),
+    Empleado_ID int,
+    Proyecto_Nombre varchar(30) references Proyecto(Nombre),
+    primary key(Empleado_ID)
+    );
+    
+Create table Complementado (
+
+	);
+	
+Create table Proyecto (
+	Proyecto_ID int,
+	Altitud varchar(30),
+	Ubicacion varchar(30),
+	Nombre varchar(30),
+	primary key(Nombre)
+	);
+	
+create table EmpleadoProyecto (
 	Empleado_ID references Empleado(Empleado_ID),
-	Operacion_ID references Operacion(Operacion_ID),
-	);   //
+	Proyecto_ID references Proyecto(Proyecto_ID),
+	);  
 	
-create table EmpleadoProyecto(
-	Empleado
-	
+create table EmpleadoMaquinaria (
+	Empleado_ID references Empleado(Empleado_ID),
+	Proyecto_ID references Proyecto(Proyecto_ID),
+
 	);
 	
 create table CargoSalario(
@@ -88,29 +124,12 @@ create table Suministrado (
     Proveedor_RUC varchar(30) references Proveedor(RUC)
     );
 
-Create table Producto (
-    Producto_ID int,
-    Nombre varchar(30),
-    Cliente_ID int references Cliente(Cliente_ID),
-    Proyecto_nombre varchar(30) references Proyecto(Nombre),
-    Primary key(Producto_ID)
-    );
-
 Create table ProyectoOperacion (
     Proyecto_Nombre varchar(30) references Proyecto(Nombre),
     Operación_Nombre varchar(30) references Operación(Nombre)
     );
 
-create table Empleado (
-    Carga varchar(30),
-    Teléfono varchar(30),
-    Salario varchar(30),
-    Dirección varchar(30),
-    Nombre varchar(30),
-    Empleado_ID int,
-    Proyecto_Nombre varchar(30) references Proyecto(Nombre),
-    primary key(Empleado_ID)
-    ;
+
 
 Create table Compra (
     Empleado_ID int references Empleado(Empleado_ID),
@@ -119,12 +138,7 @@ Create table Compra (
     );
 
 	
-create table ConflictoSocial(
-	Ubicacion references Operacion(Ubicacion);    //duda
-	Situacion varchar(30);
-	),
-	
-create table Supervisor(
+Create table Supervisor(
 	Supervisor_ID int,
 	nombre varchar(30),
 	Dirección,
