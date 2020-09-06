@@ -168,8 +168,22 @@ Insert Into proveedor(ruc,nombre,telefono,email) values('c','c','c','c');
 IV. CONSULTAS
 Deberá formular el enunciado, la consulta y una captura del resultado:
 -Consulta que utilice funciones agregadas (AVG , COUNT, MIN, MAX, SUM, etc) : 2
+
+select * from empleado;
+select avg(salario) from empleado;
+
+select * from proyecto;
+select max(altitud) from proyecto;
+
 -Consultas que usen las cláusulas WHERE, GROUP BY, HAVING, ORDER BY: 2
+
+
+
 -Subconsultas de cada tipo (uso de operadores in, =, >=,<=, exists, all, any ): 4 
+
+
+
+
 
 V. VISTAS
 Deberá formular el enunciado, la consulta y una captura del resultado:
