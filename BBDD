@@ -16,8 +16,9 @@ Create table Cliente (
 	primary key(Cliente_ID)
 	);
 
-Create table Solicita (
-	
+Create table ClienteProducto (
+	Cliente_ID 
+	Producto_ID
 	);
 
 Create table Producto (
@@ -28,8 +29,13 @@ Create table Producto (
 	Primary key(Producto_ID)
 	);
 
-Create table Operación (
-	Operacion_ID varchar(30),  /agregado
+Create table ProductoOperacion(
+	Producto_ID references Producto(Producto_ID),
+	Operacion_ID references Operacion(Operacion_ID)
+	);
+
+Create table Operacion (
+	Operacion_ID varchar(30),  
 	Nombre varchar(30),
 	Fecha varchar(30),
 	Altitud varchar(30),
@@ -37,62 +43,21 @@ Create table Operación (
 	primary key(Nombre)
 	);
 
-Create table Asociado (
-
+Create table OperacionConflicto (
+	Operacion_ID
+	Conficto_ID
 	);
 	
 Create table ConflictoSocial (
 	Conficto_ID int,
-	Ubicacion references Operacion(Ubicacion);    //duda
-	Situacion varchar(30);
+	Ubicacion references Operacion(Ubicacion);
+	Situacion varchar(30)
 	);
 	
-Create table Trabaja (
-	
-	
-	
+Create table OperacionMaquinaria (
+	Operacion_ID
+	Maquinaria_ID
 	);
-
-Create table Empleado (
-    Carga varchar(30),
-    Teléfono varchar(30),
-    Salario varchar(30),
-    Dirección varchar(30),
-    Nombre varchar(30),
-    Empleado_ID int,
-    Proyecto_Nombre varchar(30) references Proyecto(Nombre),
-    primary key(Empleado_ID)
-    );
-    
-Create table Complementado (
-
-	);
-	
-Create table Proyecto (
-	Proyecto_ID int,
-	Altitud varchar(30),
-	Ubicacion varchar(30),
-	Nombre varchar(30),
-	primary key(Nombre)
-	);
-	
-create table EmpleadoProyecto (
-	Empleado_ID references Empleado(Empleado_ID),
-	Proyecto_ID references Proyecto(Proyecto_ID),
-	);  
-	
-create table EmpleadoMaquinaria (
-	Empleado_ID references Empleado(Empleado_ID),
-	Proyecto_ID references Proyecto(Proyecto_ID),
-
-	);
-	
-create table CargoSalario(
-	Cargo varchar(30),
-	Salario int,
-	primary key(Cargo)
-	);
-
 
 create table Maquinaria (
 	Modelo varchar(30),
@@ -101,50 +66,64 @@ create table Maquinaria (
 	Marca varchar(30),
 	Cantidad varchar(30),
 	primary key(Maquinaria_ID)
+	);	
+	
+Create table OperacionProyecto (
+	Operacion_ID
+	Proyecto_ID
+	);
+	
+Create table Proyecto (
+	Proyecto_ID int,
+	Altitud varchar(30),
+	Ubicacion varchar(30),
+	Nombre varchar(30),
+	primary key(Nombre)
+	);	
+	
+Create table OperacionEmpleado (
+	Operacion_ID
+	Empleado_ID
+	);
+
+Create table Empleado (
+	Empleado_ID int,
+	Nombre varchar(30),
+	Dirección varchar(30),
+	Carga varchar(30),
+	Teléfono varchar(30),
+	Salario varchar(30),
+	primary key(Empleado_ID)
+	);
+    
+Create table Supervisa (
+	Supervisor_ID int, 
+	Empleado_ID references Empleado(Empleado_ID) 
+	);
+	
+Create table EmpleadoProyecto (
+	Empleado_ID references Empleado(Empleado_ID),
+	Proyecto_ID references Proyecto(Proyecto_ID)
+	);  
+	
+Create table EmpleadoMaquinaria (
+	Empleado_ID references Empleado(Empleado_ID),
+	Proyecto_ID references Proyecto(Proyecto_ID),
+	);
+	
+Create table MaquinariaProveedor (
+	Maquinaria_ID references Maquinaria(Maquinaria_ID),
+	RUC references Proveedor(RUC)
 	);
 
 Create table Proveedor (
 	RUC varchar(30),
+	Nombre varchar(30),
 	Teléfono varchar(30),
 	Email varchar(30),
-	Nombre varchar(30),
-    primary key(RUC) 
-    );
+	primary key(RUC) 
+	);
 
-create table Factura (
-    Número varchar(30),
-    Pago varchar(30),
-    Fecha varchar(30),
-    Cliente_ID int references Cliente(Cliente_ID),
-    primary key(Número)
-    );
-
-create table Suministrado (
-    Maquinaria_ID int references Maquinaria(Maquinaria_ID),
-    Proveedor_RUC varchar(30) references Proveedor(RUC)
-    );
-
-Create table ProyectoOperacion (
-    Proyecto_Nombre varchar(30) references Proyecto(Nombre),
-    Operación_Nombre varchar(30) references Operación(Nombre)
-    );
-
-
-
-Create table Compra (
-    Empleado_ID int references Empleado(Empleado_ID),
-    Maquinaria_ID int references Maquinaria(Maquinaria_ID),
-    Costo varchar(30)
-    );
-
-	
-Create table Supervisor(
-	Supervisor_ID int,
-	nombre varchar(30),
-	Dirección,
-	Teléfono,
-	Salario,
-	
 	
 	
 Codigo SQL para ingresar datos a las tablas:
