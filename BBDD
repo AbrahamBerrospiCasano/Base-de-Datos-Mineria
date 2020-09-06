@@ -64,6 +64,7 @@ create table Maquinaria (
 	Nombre varchar(30),
 	Marca varchar(30),
 	Cantidad varchar(30),
+	costo varchar(30),
 	primary key(Maquinaria_ID)
 	);	
 	
@@ -144,7 +145,7 @@ Insert Into conflictosocial(conflicto_id,ubicacion,situacion) values(i,'c','c');
 
 Insert Into operacionmaquinaria(operacion_id,maquinaria_id) values(i,i);
 
-Insert Into maquinaria(maquinaria_id,modelo,nombre,marca,cantidad) values(i,'c','c','c','c');
+Insert Into maquinaria(maquinaria_id,modelo,nombre,marca,cantidad,costo) values(i,'c','c','c','c','c');
 
 Insert Into opionproyecto(operacion_id,proyecto_id) values(i,i);
 
@@ -233,6 +234,3 @@ Codigo para hacer consultas:
 -Join Right:
 	Buscar los datos de los productos y aquellas operaciones que se producen los minerales.
 	Select * from operaciones RIGHT OUTER JOIN producto ON "id-mineral"="id-producto";
-
-
-Consultas: 
