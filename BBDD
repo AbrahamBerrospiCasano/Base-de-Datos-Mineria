@@ -68,8 +68,8 @@ create table Maquinaria (
 	);	
 	
 Create table OperacionProyecto (
-	Operacion_ID
-	Proyecto_ID
+	Operacion_ID references Operacion(Operacion_ID),
+	Proyecto_ID references Proyecto(Proyecto_ID)
 	);
 	
 Create table Proyecto (
@@ -136,33 +136,33 @@ Insert Into producto(producto_id,nombre) values(i,'c');
 
 Insert Into productooperacion(producto_id,operacion_id) values();
 
-Insert Into operación(operacion_id,nombre,fecha,altitud,ubicación) values('c''c''c''c');
+Insert Into operación(operacion_id,nombre,fecha,altitud,ubicación) values(i,'c''c''c''c');
 
-Insert Into operacionconflicto(operacion_id,conflicto_id) values();
+Insert Into operacionconflicto(operacion_id,conflicto_id) values(i,i);
 
-Insert Into conflictosocial(conflicto_id,ubicacion,situacion) values();
+Insert Into conflictosocial(conflicto_id,ubicacion,situacion) values(i,'c','c');
 
-Insert Into operacionmaquinaria(operacion_id,maquinaria_id) values();
+Insert Into operacionmaquinaria(operacion_id,maquinaria_id) values(i,i);
 
 Insert Into maquinaria(maquinaria_id,modelo,nombre,marca,cantidad) values(i,'c','c','c','c');
 
-Insert Into opionproyecto(operacion_id,proyecto_id) values();
+Insert Into opionproyecto(operacion_id,proyecto_id) values(i,i);
 
 Insert Into proyecto(altitud,ubicación,nombre,cliente_id), values('c','c','c',i);
 
-Insert Into operacionempleado() values();
+Insert Into operacionempleado(operacion_id,empleado_id) values(i,i);
 
-Insert Into empleado(empleado_id,nombre,dirección,carga,teléfono,salario,) values('c','c','c','c','c',i,'c');
+Insert Into empleado(empleado_id,nombre,dirección,carga,teléfono,salario,) values(i,'c','c','c','c','c');
 
-Insert Into supervisa(supervisor_id,empleado_id) values();
+Insert Into supervisa(supervisor_id,empleado_id) values(i,i);
 
-Insert Into empleadoproyecto(empleado_id,proyecto_id) values();
+Insert Into empleadoproyecto(empleado_id,proyecto_id) values(i,i);
 
-Insert Into empleadomaquinaria(empleado_id,maquinaria_id) values();
+Insert Into empleadomaquinaria(empleado_id,maquinaria_id) values(i,i);
 
-Insert Into maquinariaproveedor(maquinaria_id,ruc) values();
+Insert Into maquinariaproveedor(maquinaria_id,ruc) values(i,'c');
 
-Insert Into proveedor(ruc,nombre,telefono,email) values();
+Insert Into proveedor(ruc,nombre,telefono,email) values('c','c','c','c');
 
 
 Codigo para hacer consultas:
