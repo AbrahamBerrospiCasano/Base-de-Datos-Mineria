@@ -17,8 +17,8 @@ Create table Cliente (
 	);
 
 Create table ClienteProducto (
-	Cliente_ID 
-	Producto_ID
+	Cliente_ID references Cliente(Cliente_ID),
+	Producto_ID references Producto(Producto_ID)
 	);
 
 Create table Producto (
@@ -35,33 +35,34 @@ Create table ProductoOperacion(
 	);
 
 Create table Operacion (
-	Operacion_ID varchar(30),  
+	Operacion_ID varchar(30),
 	Nombre varchar(30),
 	Fecha varchar(30),
 	Altitud varchar(30),
 	Ubicación varchar(30),
-	primary key(Nombre)
+	primary key(Operacion_ID)
 	);
 
 Create table OperacionConflicto (
-	Operacion_ID
-	Conficto_ID
+	Operacion_ID references Operacion(Operacion_ID)
+	Conficto_ID references ConflictoSocial(Conflicto_ID)
 	);
 	
 Create table ConflictoSocial (
 	Conficto_ID int,
 	Ubicacion references Operacion(Ubicacion);
 	Situacion varchar(30)
+	primary key(Conflicto_ID)
 	);
 	
 Create table OperacionMaquinaria (
-	Operacion_ID
-	Maquinaria_ID
+	Operacion_ID references Operacion(Operacion_ID),
+	Maquinaria_ID references Maquinaria(Maquinaria_ID)
 	);
 
 create table Maquinaria (
-	Modelo varchar(30),
 	Maquinaria_ID int,
+	Modelo varchar(30),
 	Nombre varchar(30),
 	Marca varchar(30),
 	Cantidad varchar(30),
@@ -78,12 +79,12 @@ Create table Proyecto (
 	Altitud varchar(30),
 	Ubicacion varchar(30),
 	Nombre varchar(30),
-	primary key(Nombre)
+	primary key(Proyecto_ID)
 	);	
 	
 Create table OperacionEmpleado (
-	Operacion_ID
-	Empleado_ID
+	Operacion_ID references Operacion(Operacion_ID),
+	Empleado_ID references Empleado(Empleado_ID)
 	);
 
 Create table Empleado (
@@ -104,11 +105,11 @@ Create table Supervisa (
 Create table EmpleadoProyecto (
 	Empleado_ID references Empleado(Empleado_ID),
 	Proyecto_ID references Proyecto(Proyecto_ID)
-	);  
+	);
 	
 Create table EmpleadoMaquinaria (
 	Empleado_ID references Empleado(Empleado_ID),
-	Proyecto_ID references Proyecto(Proyecto_ID),
+	Maquinaria_ID references Maquinaria(Maquinaria_ID),
 	);
 	
 Create table MaquinariaProveedor (
@@ -129,7 +130,7 @@ Create table Proveedor (
 Codigo SQL para ingresar datos a las tablas:
 
 
-Insert Into clientes(cliente_id,nombre,teléfono) values(i,'c','c');
+Insert Into cliente(cliente_id,nombre,teléfono) values(i,'c','c');
 Insert Into compra(emplead_id,maquinaria_id,costo) values(int,int,'c');
 Insert Into empleado(carga,teléfono,salario,dirección,nombre,empleado_id,proyecto_nombre) values('c','c','c','c','c',i,'c');
 Insert Into factura(número,pago,fecha,cliente_id), values('c','c','c',i);
