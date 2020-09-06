@@ -9,35 +9,37 @@ create database mina;
 
 Codigo para crear las tablas:
 
-Create table Cliente (
-	Cliente_ID int,
-	Nombre varchar(30),
-	Teléfono varchar(30),
-	primary key(Cliente_ID)
+Create table cliente (
+	cliente_id int NOT NULL,
+	nombre varchar(30) NOT NULL,
+	telefono varchar(30) NOT NULL,
+	primary key(cliente_id)
 	);
 
-Create table ClienteProducto (
-	Cliente_ID references Cliente(Cliente_ID),
-	Producto_ID references Producto(Producto_ID)
+Create table clienteProducto (
+	cliente_ID references cliente(cliente_id),
+	producto_ID references Producto(Producto_id)
 	);
 
-Create table Producto (
-	Producto_ID int,
-	Nombre varchar(30),
-	Primary key(Producto_ID)
+Create table producto (
+	producto_id int+NOT NULL,
+	nombre varchar(30) NOT NULL,
+	primary key(producto_id)
 	);
 
 Create table ProductoOperacion(
-	Producto_ID references Producto(Producto_ID),
-	Operacion_ID references Operacion(Operacion_ID)
+	producto_id references Producto(Producto_ID) ,
+	operacion_id references Operacion(Operacion_ID)
 	);
 
+
+
 Create table Operacion (
-	Operacion_ID varchar(30),
-	Nombre varchar(30),
-	Fecha varchar(30),
-	Altitud varchar(30),
-	Ubicación varchar(30),
+	Operacion_ID varchar(30) NOT NULL,
+	Nombre varchar(30) NOT NULL,
+	Fecha varchar(30) NOT NULL,
+	Altitud varchar(30) NOT NULL,,
+	Ubicación varchar(30) NOT NULL,
 	primary key(Operacion_ID)
 	);
 
@@ -47,9 +49,9 @@ Create table OperacionConflicto (
 	);
 	
 Create table ConflictoSocial (
-	Conficto_ID int,
+	Conficto_ID int NOT NULL,
 	Ubicacion references Operacion(Ubicacion);
-	Situacion varchar(30)
+	Situacion varchar(30) NOT NULL,
 	primary key(Conflicto_ID)
 	);
 	
@@ -59,12 +61,12 @@ Create table OperacionMaquinaria (
 	);
 
 create table Maquinaria (
-	Maquinaria_ID int,
-	Modelo varchar(30),
-	Nombre varchar(30),
-	Marca varchar(30),
-	Cantidad varchar(30),
-	costo varchar(30),
+	Maquinaria_ID int NOT NULL,
+	Modelo varchar(30) NOT NULL,
+	Nombre varchar(30) NOT NULL,
+	Marca varchar(30) NOT NULL,
+	Cantidad varchar(30) NOT NULL,
+	costo varchar(30) NOT NULL,
 	primary key(Maquinaria_ID)
 	);	
 	
@@ -74,10 +76,10 @@ Create table OperacionProyecto (
 	);
 	
 Create table Proyecto (
-	Proyecto_ID int,
-	Altitud varchar(30),
-	Ubicacion varchar(30),
-	Nombre varchar(30),
+	Proyecto_ID int NOT NULL,
+	Altitud varchar(30) NOT NULL,
+	Ubicacion varchar(30) NOT NULL,
+	Nombre varchar(30) NOT NULL,
 	primary key(Proyecto_ID)
 	);	
 	
@@ -87,12 +89,12 @@ Create table OperacionEmpleado (
 	);
 
 Create table Empleado (
-	Empleado_ID int,
-	Nombre varchar(30),
-	Dirección varchar(30),
-	Cargo varchar(30),
-	Teléfono varchar(30),
-	Salario varchar(30),
+	Empleado_ID int NOT NULL,
+	Nombre varchar(30) NOT NULL,
+	Dirección varchar(30) NOT NULL,
+	Cargo varchar(30) NOT NULL,
+	Teléfono varchar(30) NOT NULL,
+	Salario varchar(30) NOT NULL, // tabla salario
 	primary key(Empleado_ID)
 	);
     
@@ -126,42 +128,321 @@ Create table Proveedor (
 
 
 Codigo SQL para ingresar datos a las tablas:
-
+-------------
 Insert Into cliente(cliente_id,nombre,teléfono) values(i,'c','c');
 
+insert into cliente(cliente_id,nombre,telefono) values (1,'Juan Rodriguez','985145633');
+insert into cliente(cliente_id,nombre,telefono) values(2,'Martha Nuñez','931531241');
+insert into cliente(cliente_id,nombre,telefono) values(3,'Sofia Mendoza','912512856');
+insert into cliente(cliente_id,nombre,telefono) values(4,'Simon Altamirano','996872841');
+insert into cliente(cliente_id,nombre,telefono) values(5,'Luis Garcia','999763812');
+insert into cliente(cliente_id,nombre,telefono) values(6,'Alvaro Alva','998456214');
+insert into cliente(cliente_id,nombre,telefono) values(7,'Viviana Perez','954621752');
+insert into cliente(cliente_id,nombre,telefono) values(8,'Cesar Cardenas','999856321');
+insert into cliente(cliente_id,nombre,telefono) values(9,'Pablo Rojas','998451564');
+insert into cliente(cliente_id,nombre,telefono) values(10,'Joseph Ruiz','999456147');
+----------------------
 Insert Into clienteoperacion(cliente_id,producto_id) values(i,i);
 
+------------------------
 Insert Into producto(producto_id,nombre) values(i,'c');
 
+
+insert into producto(producto_id,nombre) values (1,'oro');
+insert into producto(producto_id,nombre) values (2,'plata');
+insert into producto(producto_id,nombre) values (3,'cobre');
+insert into producto(producto_id,nombre) values (4,'zinc');
+insert into producto(producto_id,nombre) values (5,'plomo');
+
+
+----------------------------
 Insert Into productooperacion(producto_id,operacion_id) values();
 
+insert into genera(producto_id,operacion_id) values (1,1);
+insert into genera(producto_id,operacion_id) values (4,4);
+
+-------------------------------
 Insert Into operación(operacion_id,nombre,fecha,altitud,ubicación) values(i,'c''c''c''c');
 
+insert into operacion(operacion_id,nombre,fecha,ubicacion) values (1,'tambomayo','01/01/2016','Caylloma, Arequipa');
+insert into operacion(operacion_id,nombre,fecha,ubicacion) values (2,'tambomayo','01/04/2016','Caylloma, Arequipa');
+insert into operacion(operacion_id,nombre,fecha,ubicacion) values (3,'orcopampa','21/11/2015','Castilla, Arequipa');
+insert into operacion(operacion_id,nombre,fecha,ubicacion) values (4,'orcopampa','15/03/2015','Castilla, Arequipa');
+insert into operacion(operacion_id,nombre,fecha,ubicacion) values (5,'La Zanja','15/03/2015','Santa Cruz, Cajamarca');
+insert into operacion(operacion_id,nombre,fecha,ubicacion) values (6,'La Zanja','12/12/2014','Santa Cruz, Cajamarca');
+insert into operacion(operacion_id,nombre,fecha,ubicacion) values (6,'La Zanja','12/12/2014','Santa Cruz, Cajamarca');
+insert into operacion(operacion_id,nombre,fecha,ubicacion) values (4,'Uchucchacua','29/07/2014','Oyòn, Lima');
+insert into operacion(operacion_id,nombre,fecha,ubicacion) values (5,'Julcani','20/01/2014','Angares, Huancavelica');
+
+----------------------------
 Insert Into operacionconflicto(operacion_id,conflicto_id) values(i,i);
 
+insert into asociado(operacion_id,conflicto_id) values(5,1);
+insert into conflictosocial(conflicto_id,situacion) values (1,'socioambiental');
+
+--------------------------
 Insert Into conflictosocial(conflicto_id,ubicacion,situacion) values(i,'c','c');
 
+insert into conflictosocial(conflicto_id,situacion) values (1,'socioambiental');
+insert into conflictosocial(conflicto_id,situacion) values (2,'covid-19')
+
+
+----------------------------------
 Insert Into operacionmaquinaria(operacion_id,maquinaria_id) values(i,i);
 
 Insert Into maquinaria(maquinaria_id,modelo,nombre,marca,cantidad,costo) values(i,'c','c','c','c','c');
+mina=# insert into maquinaria(maquinaria_id,modelo,nombre,marca,cantidad,costo) values (4,'CAT','Dx Series','BullDozer',2,15000);
+INSERT 0 1
+mina=# insert into maquinaria(maquinaria_id,modelo,nombre,marca,cantidad,costo) values (5,'XCMG','TY16'','BullDozer',1,13400);
+mina'# insert into maquinaria(maquinaria_id,modelo,nombre,marca,cantidad,costo) values (6,'BSP','JX25-8','Perforadora para Pilote',2,18000);
+mina'# insert into maquinaria(maquinaria_id,modelo,nombre,marca,cantidad,costo) values (7,'SANY','SR155C10','Perforadora Multifuncion',2,21000);
+mina'# insert into maquinaria(maquinaria_id,modelo,nombre,marca,cantidad,costo) values (8,'AFT','MH100','Zanjadora con Cadena',3,12350);
+mina'# insert into maquinaria(maquinaria_id,modelo,nombre,marca,cantidad,costo) values (9,'Normet','Tornado S2','Camion Hormigonera',1,200000);
+mina'# insert into maquinaria(maquinaria_id,modelo,nombre,marca,cantidad,costo) values (10,'SYZE-1T','MH5000','Dùmper Rigido',2,15000);
+mina'# select * from maquinaria;
+mina'# select * from maquinaria;
+mina'# insert into maquinaria(marca,cantidad,costo) values (5,'XCMG','TY16','BullDozer',1,13400);
+mina'# ^C
+mina=# insert into maquinaria(maquinaria_id,modelo,nombre,marca,cantidad,costo) values (5,'XCMG','TY16','BullDozer',1,13400),
+mina-# (6,'BSP','JX25-8','Perforadora para Pilote',2,18000);
+INSERT 0 2
+mina=# insert into maquinaria(maquinaria_id,modelo,nombre,marca,cantidad,costo) values (7,'SANY','SR155C10','Perforadora Multifuncion',2,21000),
+mina-# (8,'AFT','MH100','Zanjadora con Cadena',3,12350),
+mina-# (9,'Normet','Tornado S2','Camion Hormigonera',1,200000),
+mina-# (10,'SYZE-1T','MH5000','Dùmper Rigido',2,15000);
+INSERT 0 4
+mina=# select * from maquinaria;
 
+--------------------------------
 Insert Into opionproyecto(operacion_id,proyecto_id) values(i,i);
+mina=# insert into complementado(operacion_id,proyecto_id) values(2,1);
+INSERT 0 1
+mina=# insert into complementado(operacion_id,proyecto_id) values(2,2);
+INSERT 0 1
+mina=# insert into complementado(operacion_id,proyecto_id) values(3,2);
+INSERT 0 1
+mina=# insert into complementado(operacion_id,proyecto_id) values(4,2);
+INSERT 0 1
+mina=# insert into complementado(operacion_id,proyecto_id) values(5,1);
+INSERT 0 1
 
+------------------------------
 Insert Into proyecto(altitud,ubicación,nombre,cliente_id), values('c','c','c',i);
 
+
+insert into proyecto(proyecto_id,altitud,ubicacion,nombre) values (2,'4500','Cerro de Pasco','Yumpaq');
+insert into proyecto(proyecto_id,altitud,ubicacion,nombre) values (3,'3900','Amtabamba, Apurimac','Trapiche');
+insert into proyecto(proyecto_id,altitud,ubicacion,nombre) values (4,'170','Piura','Coimolache Sulfuros');
+
+-----------------------------------
 Insert Into operacionempleado(operacion_id,empleado_id) values(i,i);
+ insert into trabajaOperacion(operacion_id,empleado_id) values(1,5);
+INSERT 0 1
+mina=# insert into trabajaOperacion(operacion_id,empleado_id) values(2,5);
+INSERT 0 1
+mina=# insert into trabajaOperacion(operacion_id,empleado_id) values(5,5);
+INSERT 0 1
+mina=# insert into trabajaOperacion(operacion_id,empleado_id) values(3,10);
+INSERT 0 1
+mina=# insert into trabajaOperacion(operacion_id,empleado_id) values(4,10);
+INSERT 0 1
+mina=# insert into trabajaOperacion(operacion_id,empleado_id) values(5,1);
+INSERT 0 1
+mina=# insert into trabajaOperacion(operacion_id,empleado_id) values(4,2);
+INSERT 0 1
+mina=# insert into trabajaOperacion(operacion_id,empleado_id) values(3,3);
+INSERT 0 1
+mina=# insert into trabajaOperacion(operacion_id,empleado_id) values(2,4);
+INSERT 0 1
+mina=# insert into trabajaOperacion(operacion_id,empleado_id) values(1,6);
+INSERT 0 1
+mina=# insert into trabajaOperacion(operacion_id,empleado_id) values(2,7);
+INSERT 0 1
+mina=# insert into trabajaOperacion(operacion_id,empleado_id) values(4,8);
+INSERT 0 1
+mina=# insert into trabajaOperacion(operacion_id,empleado_id) values(3,9);
 
+
+
+---------------------------------------------------
+maquinaria empleado
+insert into supervisor(empleado_id,supervisor_id) values (1,5);
+INSERT 0 1
+mina=# insert into supervisor(empleado_id,supervisor_id) values (3,5);
+INSERT 0 1
+mina=# insert into supervisor(empleado_id,supervisor_id) values (9,5);
+INSERT 0 1
+mina=# insert into supervisor(empleado_id,supervisor_id) values (6,5);
+INSERT 0 1
+mina=# insert into supervisor(empleado_id,supervisor_id) values (2,10);
+INSERT 0 1
+mina=# insert into supervisor(empleado_id,supervisor_id) values (4,10);
+INSERT 0 1
+mina=# insert into supervisor(empleado_id,supervisor_id) values (7,10);
+INSERT 0 1
+mina=# insert into supervisor(empleado_id,supervisor_id) values (8,10);
+INSERT 0 1
+mina=# insert into compra(empleado_id,maquinaria_id) values (5,6);
+INSERT 0 1
+mina=# insert into compra(empleado_id,maquinaria_id) values (5,9);
+INSERT 0 1
+mina=# insert into compra(empleado_id,maquinaria_id) values (10,5);
+INSERT 0 1
+mina=# insert into compra(empleado_id,maquinaria_id) values (10,7);
+INSERT 0 1
+mina=# insert into compra(empleado_id,maquinaria_id) values (10,8);
+INSERT 0 1
+mina=# insert into compra(empleado_id,maquinaria_id) values (10,10);
+INSERT 0 1
+mina=# delete from compra where maquinaria_id=5
+
+
+
+
+-----------------
 Insert Into empleado(empleado_id,nombre,dirección,cargo,teléfono,salario,) values(i,'c','c','c','c','c');
+insert into empleado(empleado_id,nombre,direccion,cargo,telefono) values (1,'Javier Benavides','Lima','Ing. Minas','975124741');
+INSERT 0 1
+mina=# insert into empleado(empleado_id,nombre,direccion,cargo,telefono) values (2,'Mario Aguilar','Huanuco','Obrero','975413258');
+INSERT 0 1
+mina=# insert into empleado(empleado_id,nombre,direccion,cargo,telefono) values (2,'Mario Aguilar','Junin','Ing. Quimico','999541571');
+ERROR:  llave duplicada viola restricción de unicidad «empleado_pkey»
+DETALLE:  Ya existe la llave (empleado_id)=(2).
+mina=# insert into empleado(empleado_id,nombre,direccion,cargo,telefono) values (3,'Silviana Castillo','Junin','Ing. Quimico','999541571');
+INSERT 0 1
+mina=# insert into empleado(empleado_id,nombre,direccion,cargo,telefono) values (4,'Rosario Palpan','Ica','Ing.Geologo','994471671');
+INSERT 0 1
+mina=# insert into empleado(empleado_id,nombre,direccion,cargo,telefono) values (5,'Gonzalo Gonzales','La Libertad','Ing.Geologo','984469712');
+INSERT 0 1
+mina=# insert into empleado(empleado_id,nombre,direccion,cargo,telefono) values (6,'Mario Fernandez','Loreto','Obrerp','948449212');
+INSERT 0 1
+mina=# insert into empleado(empleado_id,nombre,direccion,cargo,telefono) values (7,'Diego Morales','Piura','Ing. Quimico','944546112');
+INSERT 0 1
+mina=# insert into empleado(empleado_id,nombre,direccion,cargo,telefono) values (8,'Fernando Diaz','Tumbes','Ing. Geologo','999446112');
+INSERT 0 1
+mina=# insert into empleado(empleado_id,nombre,direccion,cargo,telefono) values (9,'Sergio Hernandez','Puno','Obreo','99451265');
+INSERT 0 1
+mina=# insert into empleado(empleado_id,nombre,direccion,cargo,telefono) values (10,'Pedro Casanova','Puno','Ing. Minas','994125485');
+INSERT 0 1
 
+
+-----------------------
 Insert Into supervisa(supervisor_id,empleado_id) values(i,i);
+mina=# insert into supervisor(empleado_id,supervisor_id) values (1,5);
+INSERT 0 1
+mina=# insert into supervisor(empleado_id,supervisor_id) values (3,5);
+INSERT 0 1
+mina=# insert into supervisor(empleado_id,supervisor_id) values (9,5);
+INSERT 0 1
+mina=# insert into supervisor(empleado_id,supervisor_id) values (6,5);
+INSERT 0 1
+mina=# insert into supervisor(empleado_id,supervisor_id) values (2,10);
+INSERT 0 1
+mina=# insert into supervisor(empleado_id,supervisor_id) values (4,10);
+INSERT 0 1
+mina=# insert into supervisor(empleado_id,supervisor_id) values (7,10);
+INSERT 0 1
+mina=# insert into supervisor(empleado_id,supervisor_id) values (8,10);
 
+-----------------------
 Insert Into empleadoproyecto(empleado_id,proyecto_id) values(i,i);
 
-Insert Into empleadomaquinaria(empleado_id,maquinaria_id) values(i,i);
+mina=# insert into trabajaProyecto(empleado_id,proyecto_id) values(5,1);
+INSERT 0 1
+mina=# insert into trabajaProyecto(empleado_id,proyecto_id) values(5,3);
+INSERT 0 1
+mina=# insert into trabajaProyecto(empleado_id,proyecto_id) values(5,6);
+INSERT 0 1
+mina=# insert into trabajaProyecto(empleado_id,proyecto_id) values(10,2);
+INSERT 0 1
+mina=# insert into trabajaProyecto(empleado_id,proyecto_id) values(10,4);
+INSERT 0 1
+mina=# insert into trabajaProyecto(empleado_id,proyecto_id) values(10,5);
+INSERT 0 1
+mina=# insert into trabajaProyecto(empleado_id,proyecto_id) values(1,1);
+INSERT 0 1
+mina=# insert into trabajaProyecto(empleado_id,proyecto_id) values(2,2);
+INSERT 0 1
+mina=# insert into trabajaProyecto(empleado_id,proyecto_id) values(3,3);
+INSERT 0 1
+mina=# insert into trabajaProyecto(empleado_id,proyecto_id) values(4,4);
+INSERT 0 1
+mina=# insert into trabajaProyecto(empleado_id,proyecto_id) values(6,5);
+INSERT 0 1
+mina=# insert into trabajaProyecto(empleado_id,proyecto_id) values(7,6);
+INSERT 0 1
+mina=# insert into trabajaProyecto(empleado_id,proyecto_id) values(8,3);
+INSERT 0 1
+mina=# insert into trabajaProyecto(empleado_id,proyecto_id) values(9,4);
+INSERT 0 1
+mina=# insert into trabajaProyecto(empleado_id,proyecto_id) values(10,1);
 
+----------------------
+
+maquinaria operacion 
+insert into utiliza(operacion_id,maquinaria_id) values (1,1);
+INSERT 0 1
+mina=# insert into utiliza(operacion_id,maquinaria_id) values (1,3);
+INSERT 0 1
+mina=# insert into utiliza(operacion_id,maquinaria_id) values (2,4);
+INSERT 0 1
+mina=# insert into utiliza(operacion_id,maquinaria_id) values (2,8);
+INSERT 0 1
+mina=# insert into utiliza(operacion_id,maquinaria_id) values (3,2);
+INSERT 0 1
+mina=# insert into utiliza(operacion_id,maquinaria_id) values (3,9);
+INSERT 0 1
+mina=# insert into utiliza(operacion_id,maquinaria_id) values (4,7);
+INSERT 0 1
+mina=# insert into utiliza(operacion_id,maquinaria_id) values (4,6);
+INSERT 0 1
+mina=# insert into utiliza(operacion_id,maquinaria_id) values (4,9);
+INSERT 0 1
+mina=# insert into utiliza(operacion_id,maquinaria_id) values (4,10);
+INSERT 0 1
+mina=# insert into utiliza(operacion_id,maquinaria_id) values (5,5);
+INSERT 0 1
+mina=# insert into utiliza(operacion_id,maquinaria_id) values (5,7);
+
+-----------------------------
 Insert Into maquinariaproveedor(maquinaria_id,ruc) values(i,'c');
+mina=# insert into distribuye(maquinaria_id,ruc) values (1,'16254712038');
+INSERT 0 1
+mina=# insert into distribuye(maquinaria_id,ruc) values (2,'18746286558');
+INSERT 0 1
+mina=# insert into distribuye(maquinaria_id,ruc) values (3,'17553928658');
+INSERT 0 1
+mina=# insert into distribuye(maquinaria_id,ruc) values (4,'10553792658');
+INSERT 0 1
+mina=# insert into distribuye(maquinaria_id,ruc) values (5,'10555103265');
+INSERT 0 1
+mina=# 
+-----------------------
 
 Insert Into proveedor(ruc,nombre,telefono,email) values('c','c','c','c');
+ina=# insert into proveedor(ruc,nombre,telefono,email) values('103548964210','Jaime Ramirez','984562475','proveedor01@gmail.com');
+ERROR:  el valor es demasiado largo para el tipo character(11)
+mina=# insert into proveedor(ruc,nombre,telefono,email) values('10235487978','Jaime Ramirez','984562475','proveedor01@gmail.com');
+INSERT 0 1
+mina=# insert into proveedor(ruc,nombre,telefono,email) values('10876541235','Carmen Chan','998745135','proveedor02@gmail.com');
+INSERT 0 1
+mina=# insert into proveedor(ruc,nombre,telefono,email) values('10757119335','William Chen','978451204','proveedor03@gmail.com');
+INSERT 0 1
+mina=# insert into proveedor(ruc,nombre,telefono,email) values('11077511395','William Chen','974891294','proveedor04@gmail.com');
+INSERT 0 1
+mina=# insert into proveedor(ruc,nombre,telefono,email) values('10375518135','Saùl Jimenez','979982794','proveedor05@gmail.com');
+INSERT 0 1
+mina=# update proveedor set nombre='Angela Gomez' where ruc='11077511395';
+UPDATE 1
+mina=# insert into proveedor(ruc,nombre,telefono,email) values('10555103265','Andrea Calmet','979984517','proveedor06@gmail.com');
+INSERT 0 1
+mina=# insert into proveedor(ruc,nombre,telefono,email) values('10553792658','Carlos Rojas','975871879','proveedor07@gmail.com');
+INSERT 0 1
+mina=# insert into proveedor(ruc,nombre,telefono,email) values('17553928658','Bruno Cinfuentes','959548710','proveedor08@gmail.com');
+INSERT 0 1
+mina=# insert into proveedor(ruc,nombre,telefono,email) values('18746286558','Sofia Cardenas','999458710','proveedor09@gmail.com');
+INSERT 0 1
+mina=# insert into proveedor(ruc,nombre,telefono,email) values('16254712038','Fabrizio Centuròn','948876100','proveedor10@gmail.com');
 
 ------
 
@@ -169,13 +450,18 @@ IV. CONSULTAS
 Deberá formular el enunciado, la consulta y una captura del resultado:
 -Consulta que utilice funciones agregadas (AVG , COUNT, MIN, MAX, SUM, etc) : 2
 
-select * from empleado;
-select avg(salario) from empleado;
+select * from cliente
+select count(cliente_id) as TotalClientes from cliente;
+
 
 select * from proyecto;
 select max(altitud) from proyecto;
 
 -Consultas que usen las cláusulas WHERE, GROUP BY, HAVING, ORDER BY: 2
+
+select * from empleado;
+select count(empleado_id) as IngMinas from empleado where cargo='Ing. Minas';
+
 
 
 
@@ -202,6 +488,14 @@ Eliminaciones de tablas de la BD.
 El trabajo se almacenará en un archivo de extensión sql , el mismo que deberá enviar al formulario
 del Classroom.
 La revisión del proyecto se realizará en estricto orden de envío del trabajo a la dirección electrónica.
+
+
+
+
+
+
+
+
 
 Codigo para hacer consultas:
 
