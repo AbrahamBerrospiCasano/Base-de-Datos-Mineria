@@ -199,3 +199,5 @@ Codigo para hacer consultas:
 	Buscar los datos de los productos y aquellas operaciones que se producen los minerales.
 	Select * from operaciones RIGHT OUTER JOIN producto ON "id-mineral"="id-producto";
 
+
+Consultas: 
