@@ -164,8 +164,34 @@ Insert Into maquinariaproveedor(maquinaria_id,ruc) values(i,'c');
 
 Insert Into proveedor(ruc,nombre,telefono,email) values('c','c','c','c');
 
+------
+
+IV. CONSULTAS
+Deberá formular el enunciado, la consulta y una captura del resultado:
+-Consulta que utilice funciones agregadas (AVG , COUNT, MIN, MAX, SUM, etc) : 2
+-Consultas que usen las cláusulas WHERE, GROUP BY, HAVING, ORDER BY: 2
+-Subconsultas de cada tipo (uso de operadores in, =, >=,<=, exists, all, any ): 4 
+
+V. VISTAS
+Deberá formular el enunciado, la consulta y una captura del resultado:
+Vista que utilice una operación de conjuntos: 1
+Vista cuyo origen de datos sean dos tablas, una por cada tipo de JOIN incluyendo una condición
+WHERE: 3
+Vista cuyo origen de datos sea otra vista: 2
+
+VI. FUNCIONES
+Deberá formular el enunciado, el programa y una captura del resultado:
+Diseñe programas que realicen las siguientes operaciones sobre su base de datos:
+Consultas utilizando joins.
+Inserciones de tuplas en las tablas de la BD.
+Actualizaciones de tablas de la BD.
+Eliminaciones de tablas de la BD.
+El trabajo se almacenará en un archivo de extensión sql , el mismo que deberá enviar al formulario
+del Classroom.
+La revisión del proyecto se realizará en estricto orden de envío del trabajo a la dirección electrónica.
 
 Codigo para hacer consultas:
+
 -Selección:
 	Buscar los datos de los empleados con salario entre 3000 y 5000.
 	Select * from empleado where salario between 3000 y 5000;
