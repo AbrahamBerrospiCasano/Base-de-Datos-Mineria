@@ -462,21 +462,54 @@ select max(altitud) from proyecto;
 select * from empleado;
 select count(empleado_id) as IngMinas from empleado where cargo='Ing. Minas';
 
+select * from maquinaria;
+select nombre,costo from maquinaria where costo>(select avg(costo) from maquinaria);
 
 
 
 -Subconsultas de cada tipo (uso de operadores in, =, >=,<=, exists, all, any ): 4 
 
+select * from operacion;
+select nombre from proyecto where altitud>(select min(altitud) from proyecto);
 
+select * from cliente;
+select * from cliente where exists(select cliente_id from solicita where cliente.cliente_id=solicita.cliente_id);
+
+select * from asociado;
+select * from operacion where not exists(select operacion_id from asociado where asociado.operacion_id=operacion.operacion_id);
 
 
 
 V. VISTAS
 Deberá formular el enunciado, la consulta y una captura del resultado:
 Vista que utilice una operación de conjuntos: 1
+
+create view vista_cliente_proveedor as select cliente.nombre from cliente union select proveedor.nombre from proveedor;
+select * from vista_cliente_proveedor;
+
+
 Vista cuyo origen de datos sean dos tablas, una por cada tipo de JOIN incluyendo una condición
 WHERE: 3
+
+create view vista_cliente_producto as select cliente.cliente_id, nombre, producto_id from cliente cross join solicita where cliente.cliente_id=solicita.cliente_id;
+select * from vista_cliente_producto
+
+create view vista_operacion_producto as select operacion.nombre from operacion right outer join genera on operacion.operacion_id=genera.operacion_id;
+select * from vista_operacion_producto;
+
+create view vista_operacion_producto as select operacion.nombre,genera.producto_id from operacion right outer join genera on operacion.operacion_id=genera.operacion_id;
+select * from vista_operacion_producto;
+
 Vista cuyo origen de datos sea otra vista: 2
+
+create view vista_operacion_oro as select nombre, producto_id from vista_operacion_producto where nombre='orcopampa';
+select * from vista_operacion_oro;
+
+create view vista_nombre_A as select nombre from vista_cliente_proveedor where nombre like 'A%';
+select * from vista_nombre_A;
+
+
+
 
 VI. FUNCIONES
 Deberá formular el enunciado, el programa y una captura del resultado:
@@ -491,9 +524,47 @@ La revisión del proyecto se realizará en estricto orden de envío del trabajo 
 
 Select cliente.nombre from cliente natural join producto where producto.nombre='oro';
 
+CREATE FUNCTION DESCUENTO(integer,numeric)
+ RETURNS numeric AS $$
+ UPDATE empleado
+ SET salario=salario-$2
+ WHERE empleado_id=$1;
+ SELECT salario FROM empleado
+ WHERE empleado_id=$1;
+ $$ LANGUAGE SQL;
+select DESCUENTO(1,100);
+ descuento 
+-----------
+      5400
+(1 fila)
+
+
+CREATE FUNCTION EliminarProveedor(ruc)
+ RETURNS void AS $$
+ DELETE FROM proveedor
+ WHERE ruc=$1;
+ $$ LANGUAGE SQL;
 
 
 
+CREATE FUNCTION AgregarProducto(integer,varchar(30))
+ RETURNS void AS $$
+ INSERT INTO producto VALUES($1,$2);
+ $$ LANGUAGE SQL;
+ 
+ 
+
+CREATE FUNCTION AgregarProducto(integer,varchar(30))
+  RETURNS void AS $$
+  INSERT INTO producto VALUES($1,$2);
+  $$ LANGUAGE SQL;
+SELECT AgregarProducto(6,'bronce');
+
+
+CREATE FUNCTION Productos(integer)
+RETURNS varchar(30) AS $$
+select cliente.nombre from cliente left outer join solicita on cliente.cliente_id=solicita.cliente_id where solicita.cliente_id=$1;
+$$ LANGUAGE SQL;
 
 
 
