@@ -462,47 +462,21 @@ select max(altitud) from proyecto;
 select * from empleado;
 select count(empleado_id) as IngMinas from empleado where cargo='Ing. Minas';
 
-select * from empleado
-select count(empleado_id) as Empleados, cargo from empleado group by cargo;  
+
+
 
 -Subconsultas de cada tipo (uso de operadores in, =, >=,<=, exists, all, any ): 4 
 
-select * from empleado;
-select nombre,costo from maquinaria where costo>(select avg(costo) from maquinaria);
 
-select * from proyecto;
-select nombre from proyecto where altitud>(select min(altitud) from proyecto);
-
-select * from cliente;
-select * from cliente where exists(select cliente_id from solicita where cliente.cliente_id=solicita.cliente_id);
-
-select * from asociado;
-select * from operacion where not exists(select operacion_id from asociado where asociado.operacion_id=operacion.operacion_id);
 
 
 
 V. VISTAS
 Deberá formular el enunciado, la consulta y una captura del resultado:
 Vista que utilice una operación de conjuntos: 1
-
-create view vista_cliente_proveedor as select cliente.nombre from cliente union select proveedor.nombre from proveedor;
-select * from vista_cliente_proveedor;
-
 Vista cuyo origen de datos sean dos tablas, una por cada tipo de JOIN incluyendo una condición
 WHERE: 3
-
-create view vista_cliente_producto as select cliente.cliente_id, nombre, producto_id from cliente cross join solicita where cliente.cliente_id=solicita.cliente_id;
-select * from vista_cliente_producto
-
-create view vista_operacion_producto as select operacion.nombre,genera.producto_id from operacion right outer join genera on operacion.operacion_id=genera.operacion_id where genera.producto_id=1;
-select * from vista_operacion_producto;
-
-create view vista_operacion_proyecto as select proyecto.nombre,complementado.operacion_id from proyecto left outer join complementado on proyecto.proyecto_id=complementado.proyecto_id where complementado.operacion_id = 2;
-select * from vista_operacion_proyecto;
-
 Vista cuyo origen de datos sea otra vista: 2
-
-
 
 VI. FUNCIONES
 Deberá formular el enunciado, el programa y una captura del resultado:
@@ -515,7 +489,7 @@ El trabajo se almacenará en un archivo de extensión sql , el mismo que deberá
 del Classroom.
 La revisión del proyecto se realizará en estricto orden de envío del trabajo a la dirección electrónica.
 
-
+Select cliente.nombre from cliente natural join producto where producto.nombre='oro';
 
 
 
